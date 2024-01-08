@@ -7,7 +7,13 @@ require('dotenv').config()
 const app = express()
 const port = 4000
 
-app.use(cors())
+if (process.env.NODE_ENV === 'prod') {
+  app.use(cors({
+    origin: 'https://www.cynthia-spence.com'
+  }))
+} else {
+  app.use(cors())
+}
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
