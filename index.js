@@ -9,7 +9,8 @@ const port = 4000
 
 if (process.env.NODE_ENV === 'prod') {
   app.use(cors({
-    origin: 'https://www.cynthia-spence.com'
+    origin: 'https://www.cynthia-spence.com',
+    methods: 'POST',
   }))
 } else {
   app.use(cors())
