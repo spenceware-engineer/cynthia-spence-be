@@ -11,19 +11,19 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(morgan('dev'))
 
-app.use((req, res, next) => {
-  res.set('Access-Control-Allow-Credentials', true)
-  res.set('Access-Control-Allow-Origin', req.headers.origin)
-  res.set('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-  res.set(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-  )
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end()
-  }
-  next()
-})
+// app.use((req, res, next) => {
+//   res.set('Access-Control-Allow-Credentials', true)
+//   res.set('Access-Control-Allow-Origin', req.headers.origin)
+//   res.set('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+//   res.set(
+//     'Access-Control-Allow-Headers',
+//     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+//   )
+//   if (req.method === 'OPTIONS') {
+//     return res.status(200).end()
+//   }
+//   next()
+// })
 
 app.post('/send-email', (req, res) => {
   const {
