@@ -19,6 +19,9 @@ app.use((req, res, next) => {
     'Access-Control-Allow-Headers',
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
   )
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end()
+  }
   next()
 })
 
@@ -57,7 +60,7 @@ app.post('/send-email', (req, res) => {
     }
   )
 
-  res.status(200).send()
+  res.status(200).json({ message: 'Success!' })
 })
 
 app.listen(port, () => {
