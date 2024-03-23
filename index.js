@@ -1,24 +1,15 @@
 const express = require('express')
 const nm = require('nodemailer')
 const bodyParser = require('body-parser')
-const cors = require('cors')
 require('dotenv').config()
 
 const app = express()
 const port = 4000
 
-if (process.env.NODE_ENV === 'prod') {
-  app.use(cors({
-    origin: 'https://www.cynthia-spence.com',
-    methods: 'POST',
-  }))
-} else {
-  app.use(cors())
-}
-
-app.use(function (req, res, next) {
+app.use((_, res, next) => {
   res.header("Access-Control-Allow-Origin", "*")
-  res.header("Access-Control-Allow-Headers", "X-Requested-With")
+  res.header("Access-Control-Allow-Headers", "*")
+  res.header("Access-Controll-Allow-Methods", "*")
   next()
 })
 
@@ -45,8 +36,8 @@ app.post('/send-email', (req, res) => {
 
   transporter.sendMail(
     {
-      from: 'cynthia.spence.dev@gmail.com',
-      to: process.env.GMAIL_SEND_TO,
+      from: process.env.GMAIL_USER,
+      to: process.env.GMAIL_USER,
       subject: `${name} ${company ? `from ${company} ` : ''} is contacting you from your portfolio site.`,
       text: `${message}\nemail: ${email}`
     },
