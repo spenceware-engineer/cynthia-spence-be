@@ -6,7 +6,11 @@ require('dotenv').config()
 const app = express()
 const port = 4000
 
-app.use((_, res, next) => {
+app.use((req, res, next) => {
+  req.header("Access-Control-Allow-Origin", "*")
+  req.header("Access-Control-Allow-Headers", "*")
+  req.header("Access-Controll-Allow-Methods", "*")
+
   res.header("Access-Control-Allow-Origin", "*")
   res.header("Access-Control-Allow-Headers", "*")
   res.header("Access-Controll-Allow-Methods", "*")
