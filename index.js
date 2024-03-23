@@ -1,7 +1,6 @@
 const express = require('express')
 const nm = require('nodemailer')
 const bodyParser = require('body-parser')
-const morgan = require('morgan')
 require('dotenv').config()
 
 const app = express()
@@ -9,7 +8,6 @@ const port = 4000
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(morgan('dev'))
 
 // app.use((req, res, next) => {
 //   res.set('Access-Control-Allow-Credentials', true)
