@@ -51,14 +51,14 @@ app.post('/send-email', (req, res) => {
     (err, info) => {
       if (err) {
         console.log(err)
-        res.send(err)
+        return res.send(err)
       } else {
         console.log(info)
       }
     }
   )
 
-  res.status(200).json({ message: 'Success!' })
+  return res.status(200).json({ message: 'Success!' })
 })
 
 app.listen(port, () => {
